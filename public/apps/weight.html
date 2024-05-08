@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weight Converter</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      background:rgb(38, 0, 255);
+    }
+
+    .container {
+      background-color: #ffffff;
+      width: 90vw;
+      font-size: 16px;
+      max-width: 28em;
+      padding: 3em;
+      position: absolute;
+      transform: translate(-50%, -50%);
+      top: 50%;
+      left: 50%;
+      box-shadow: 0 0 3.2em rgba(1, 3, 29, 0.2);
+      border-radius: 0.6em;
+    }
+
+    h2 {
+      font-size: 2em;
+      text-align: center;
+      margin-bottom: 1.5em;
+    }
+
+    .input-wrapper input {
+      display: block;
+      width: 100%;
+      font-size: 1.35em;
+      padding: 0.4em;
+      border: 1px solid #a0a0a0;
+      border-radius: 0.2em;
+    }
+
+    .input-wrapper label {
+      display: block;
+      font-size: 1.1em;
+      font-weight: 600;
+      margin-bottom: 0.25em;
+    }
+
+    .input-wrapper:not(:last-child) {
+      margin-bottom: 1.2em;
+    }
+
+    @media screen and (max-width: 28em) {
+      .container {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h2>Weight Converter</h2>
+    <div class="input-wrapper">
+      <label for="kg">Kilogram:</label>
+      <input type="number" id="kg" value="10" />
+    </div>
+    <div class="input-wrapper">
+      <label for="lb">Pounds:</label>
+      <input type="number" id="lb" />
+    </div>
+    <div class="input-wrapper">
+      <label for="oz">Ounces:</label>
+      <input type="number" id="oz" />
+    </div>
+  </div>
+  <!-- Script -->
+  <script>
+    let kgRef = document.getElementById("kg");
+    let lbRef = document.getElementById("lb");
+    let ozRef = document.getElementById("oz");
+
+    let convertFromKg = () => {
+      let kg = kgRef.value;
+      //toFixed(2) limits the decimals to 2 digits.
+      lbRef.value = (kg * 2.205).toFixed(2);
+      ozRef.value = (kg * 35.274).toFixed(2);
+    };
+
+    let convertFromLb = () => {
+      let lb = lbRef.value;
+      kgRef.value = (lb / 2.205).toFixed(2);
+      ozRef.value = (lb * 16).toFixed(2);
+    };
+
+    let convertFromOz = () => {
+      let oz = ozRef.value;
+      kgRef.value = (oz / 35.274).toFixed(2);
+      lbRef.value = (oz / 16).toFixed(2);
+    };
+
+    kgRef.addEventListener("input", convertFromKg);
+    lbRef.addEventListener("input", convertFromLb);
+    ozRef.addEventListener("input", convertFromOz);
+    window.addEventListener("load", convertFromKg);
+
+  </script>
+</body>
+
+</html>
